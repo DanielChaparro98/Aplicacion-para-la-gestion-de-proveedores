@@ -11,10 +11,10 @@ import com.mysql.jdbc.Driver;
 public class Conexion {
 
 	private static final String DRIVER_JDBC = "com.mysql.jdbc.Dirver";
-	private static final String DB = "Proveedor";
+	private static final String DB = "proveedor";
 	private static final String URL_JDBC = "jdbc:mysql://localhost:3306/" + DB;
 	private static final String USER_JDBC = "root";
-	private static final String PASSWORD_JDBC = "";
+	private static final String PASSWORD_JDBC = "1234";
 	private static Driver driver;
 
 	public synchronized static Connection getConnection() throws SQLException {
