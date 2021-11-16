@@ -34,6 +34,10 @@ public class PedidoDTO {
 			String mensaje="";
 			return mensaje="No se inserto ningun dato";
 		}
+		
+		if(pedido.getId()==null) {
+		return "El id del pedido no existe";		
+		}
 		String mensaje = "";
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -60,6 +64,10 @@ public class PedidoDTO {
 	}
 
 	public String update(Pedido pedido) {
+		if(pedido==null || (pedido.getId()==null && pedido.getCantidadProductos()==null && pedido.getEstado()==null && pedido.getFechaEntrega()==null)) {
+			String mensaje="";
+			return mensaje="No se inserto ningun dato";
+		}
 		String mensaje="";
 		Connection conn=null;
 		PreparedStatement stmt=null;
@@ -85,7 +93,10 @@ public class PedidoDTO {
 		return mensaje;
 	}
 	
-	public String deleted(int id) {
+	public String deleted(Long id) {
+		if(id==null) {
+			return "No ha ingresado un id";
+		}
 		String mensaje="";
 		Connection conn=null;
 		PreparedStatement stmt=null;

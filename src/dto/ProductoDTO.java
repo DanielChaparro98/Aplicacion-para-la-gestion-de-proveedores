@@ -29,6 +29,9 @@ public class ProductoDTO {
 	}
 	
 	public String insert(Producto producto) {
+		if(producto==null || (producto.getId()==null && producto.getNombre()==null && producto.getTipo()==null)) {
+			return "No se inserto ningun dato";
+		}
 		String mensaje = "";
 		Connection conn = null;
 		PreparedStatement stmt = null;
