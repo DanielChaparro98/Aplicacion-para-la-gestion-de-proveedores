@@ -5,6 +5,13 @@
  */
 package vista;
 
+import controlador.PedidoCtrl;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Random;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author HP
@@ -14,8 +21,11 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
     /**
      * Creates new form ActualizarPedidoForm
      */
+    
+    PedidoCtrl pedido= new PedidoCtrl();
     public AplazarPedidoForm() {
         initComponents();
+        this.cbNumero.setModel(getModel());
     }
 
     /**
@@ -31,11 +41,11 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
         panelAplazar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtNumero = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtMotivo = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
         btnAplazar = new javax.swing.JButton();
+        cbNumero = new javax.swing.JComboBox<>();
 
         jLabel3.setText("jLabel3");
 
@@ -53,6 +63,11 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
         });
 
         btnAplazar.setText("Aceptar");
+        btnAplazar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAplazarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelAplazarLayout = new javax.swing.GroupLayout(panelAplazar);
         panelAplazar.setLayout(panelAplazarLayout);
@@ -70,11 +85,10 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
                             .addComponent(jLabel4)
                             .addComponent(btnVolver))
                         .addGap(18, 18, 18)
-                        .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNumero)
-                                .addComponent(txtMotivo, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE))
-                            .addComponent(btnAplazar))))
+                        .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtMotivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                            .addComponent(btnAplazar)
+                            .addComponent(cbNumero, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
         panelAplazarLayout.setVerticalGroup(
@@ -85,7 +99,7 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -118,16 +132,45 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
         panelAplazar.repaint();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnAplazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplazarActionPerformed
+       Date date= this.getRandomDate();
+    
+        java.sql.Date sql= new java.sql.Date(date.getTime());
+        pedido.updatePedido(Long.parseLong(cbNumero.getSelectedItem().toString()), "Aplazado", sql,txtMotivo.getText());
+        txtMotivo.setText("");
+    }//GEN-LAST:event_btnAplazarActionPerformed
 
+    public DefaultComboBoxModel getModel(){
+        DefaultComboBoxModel modelo= new DefaultComboBoxModel();
+        for (int i = 0; i < pedido.selectPedido().size(); i++) {
+            modelo.addElement(pedido.selectPedido().get(i).getId());
+        }
+        return modelo;
+    }
+    
+    public  Date getRandomDate() {
+        Date date= pedido.selectPedido(Long.parseLong(cbNumero.getSelectedItem().toString())).getFechaEntrega();
+		Random rand = new Random();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ");
+		Calendar cal = Calendar.getInstance();
+		cal.set(date.getYear(), date.getMonth(), date.getDay());
+		long start = cal.getTimeInMillis();
+		cal.set(2022, 8, 30);
+		long end = cal.getTimeInMillis();
+		Date d = new Date(start + (long) (rand.nextDouble() * (end - start)));
+		//System.out.println(format.format(d));
+		return d;
+	}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAplazar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cbNumero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel panelAplazar;
     private javax.swing.JTextField txtMotivo;
-    private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,21 +8,30 @@ public class Proveedor implements Serializable {
 	private String nit;
 	private String nombre;
 	private String telefono;
-	
+	private Producto idProducto;
 	
 	
 	public Proveedor() {
 		super();
 	}
 
-	public Proveedor(Long id, String nit, String nombre, String telefono) {
+	public Proveedor(Long id, String nit, String nombre, String telefono,Producto idProducto) {
 		super();
 		this.id = id;
 		this.nit = nit;
 		this.nombre = nombre;
 		this.telefono = telefono;
+		this.idProducto=idProducto;
 	}
 	
+	public Proveedor( String nit, String nombre, String telefono,Producto idProducto) {
+		
+		this.nit = nit;
+		this.nombre = nombre;
+		this.telefono = telefono;
+		this.idProducto=idProducto;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -47,5 +56,21 @@ public class Proveedor implements Serializable {
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+
+	public Producto getIdProducto() {
+		return idProducto;
+	}
+
+	public void setIdProducto(Producto idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	@Override
+	public String toString() {
+		return "Proveedor [id=" + id + ", nit=" + nit + ", nombre=" + nombre + ", telefono=" + telefono
+				+ ", idProducto=" + idProducto + "]";
+	}
+	
+	
 
 }

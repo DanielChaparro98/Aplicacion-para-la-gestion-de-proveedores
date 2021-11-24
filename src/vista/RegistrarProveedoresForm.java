@@ -5,6 +5,11 @@
  */
 package vista;
 
+import controlador.ProductoCtrl;
+import controlador.ProveedorCtrl;
+import javax.swing.DefaultComboBoxModel;
+import modelo.Producto;
+
 /**
  *
  * @author HP
@@ -14,8 +19,13 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
     /**
      * Creates new form RegistrarProveedoresForm
      */
+    
+    ProveedorCtrl proveedor= new ProveedorCtrl();
+    ProductoCtrl producto= new ProductoCtrl();
+    Long id=0L;
     public RegistrarProveedoresForm() {
         initComponents();
+        this.cbProducto.setModel(getModelo());
     }
 
     /**
@@ -67,42 +77,47 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
         });
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelProveedoresLayout = new javax.swing.GroupLayout(panelProveedores);
         panelProveedores.setLayout(panelProveedoresLayout);
         panelProveedoresLayout.setHorizontalGroup(
             panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProveedoresLayout.createSequentialGroup()
-                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(37, 37, 37)
+                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelProveedoresLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel1))
+                        .addComponent(btnVolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRegistrar)
+                        .addGap(11, 11, 11))
                     .addGroup(panelProveedoresLayout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGap(2, 2, 2)
+                        .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelProveedoresLayout.createSequentialGroup()
                                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6))
-                                .addGap(28, 28, 28)
-                                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtNit)
-                                    .addComponent(txtNombre)
-                                    .addComponent(txtTelefono)
-                                    .addComponent(cbProducto, 0, 129, Short.MAX_VALUE)))
-                            .addGroup(panelProveedoresLayout.createSequentialGroup()
-                                .addComponent(btnVolver)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
-                                .addComponent(btnRegistrar)
-                                .addGap(11, 11, 11)))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                                .addGap(27, 27, 27)
+                                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtNombre)
+                                        .addComponent(txtTelefono)
+                                        .addComponent(cbProducto, 0, 129, Short.MAX_VALUE))))
+                            .addComponent(jLabel1))))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         panelProveedoresLayout.setVerticalGroup(
             panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProveedoresLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -120,11 +135,11 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(27, 27, 27)
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver)
                     .addComponent(btnRegistrar))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -151,7 +166,21 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
         panelProveedores.revalidate();
         panelProveedores.repaint();
     }//GEN-LAST:event_btnVolverActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+      
+       proveedor.saveProveedor(txtNit.getText(), txtNombre.getText(), txtTelefono.getText(), producto.selectProducto(Long.parseLong(cbProducto.getSelectedItem().toString())));
+       txtNombre.setText("");
+       txtNit.setText("");
+       txtTelefono.setText("");           
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    public DefaultComboBoxModel getModelo() {
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (int i = 0; i < producto.selectProducto().size(); i++) {
+            modelo.addElement(producto.selectProducto().get(i).getId());
+        }
+        return modelo;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrar;

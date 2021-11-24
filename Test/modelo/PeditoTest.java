@@ -34,11 +34,15 @@ public class PeditoTest {
 	@Test
 	public void testInsercionPedidoOk() {
 		PedidoDTO pdto=PedidoDTO.instance();
+		Proveedor proveedor=new Proveedor();
+		proveedor.setId(1l);
 		Pedido pedido= new Pedido();
 		Date fecha= new Date(116,5,3);
 		pedido.setEstado("Estado");
 		pedido.setFechaEntrega(fecha);
 		pedido.setCantidadProductos(2323L);
+		pedido.setMotivo("Motivo");
+		pedido.setIdProveedor(proveedor);
 		String rta= pdto.insert(pedido);
 		assertNotNull(rta);
 	}

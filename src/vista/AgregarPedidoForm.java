@@ -5,6 +5,14 @@
  */
 package vista;
 
+import controlador.PedidoCtrl;
+import controlador.ProveedorCtrl;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Random;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author HP
@@ -14,8 +22,12 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
     /**
      * Creates new form AgregarPedidoForm
      */
+    
+    ProveedorCtrl proveedor= new ProveedorCtrl();
+    PedidoCtrl pedido= new PedidoCtrl();
     public AgregarPedidoForm() {
         initComponents();
+        this.cbNit.setModel(getModel());
     }
 
     /**
@@ -32,11 +44,16 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnAtras = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        txtNit = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        cbNit = new javax.swing.JComboBox<>();
 
         btnSolicitar.setText("Solicitar");
+        btnSolicitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSolicitarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Realizar Pedido");
 
@@ -50,12 +67,6 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
         jLabel2.setText("NIT Proveedor");
 
         jLabel3.setText("Cantidad Productos");
-
-        txtCantidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantidadActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelSolicitarLayout = new javax.swing.GroupLayout(panelSolicitar);
         panelSolicitar.setLayout(panelSolicitarLayout);
@@ -72,35 +83,36 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3))
                         .addGap(63, 63, 63)
-                        .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                            .addComponent(cbNit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panelSolicitarLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(63, 63, 63)
                         .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(68, 68, 68)
+                        .addGap(67, 67, 67)
                         .addComponent(btnSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(265, Short.MAX_VALUE))
         );
         panelSolicitarLayout.setVerticalGroup(
             panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSolicitarLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(39, 39, 39)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addGap(35, 35, 35)
                 .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelSolicitarLayout.createSequentialGroup()
-                        .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2)
                         .addGap(26, 26, 26)
                         .addComponent(jLabel3))
-                    .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addGroup(panelSolicitarLayout.createSequentialGroup()
+                        .addComponent(cbNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(41, 41, 41)
                 .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSolicitar)
-                    .addComponent(btnAtras))
-                .addContainerGap(140, Short.MAX_VALUE))
+                    .addComponent(btnAtras)
+                    .addComponent(btnSolicitar))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -113,15 +125,9 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelSolicitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantidadActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadActionPerformed
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         PedidosView pedidos = new PedidosView();
@@ -132,15 +138,45 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
         panelSolicitar.repaint();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
+    private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
+        Date date= this.getRandomDate();
+    
+        java.sql.Date sql= new java.sql.Date(date.getTime());
+        
+        pedido.savePedido(Long.parseLong(txtCantidad.getText()),"En proceso" , sql , proveedor.selectProveedorNit(cbNit.getSelectedItem().toString()));
+        txtCantidad.setText("");
+    }//GEN-LAST:event_btnSolicitarActionPerformed
+
+     public  Date getRandomDate() {
+                Date date= pedido.selectPedido(Long.parseLong(cbNit.getSelectedItem().toString())).getFechaEntrega();
+		Random rand = new Random();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ");
+		Calendar cal = Calendar.getInstance();
+		cal.set(2021, 10, 25);
+		long start = cal.getTimeInMillis();
+		cal.set(2022, 9, 30);
+		long end = cal.getTimeInMillis();
+		Date d = new Date(start + (long) (rand.nextDouble() * (end - start)));
+		//System.out.println(format.format(d));
+		return d;
+	}
+    
+    public DefaultComboBoxModel getModel(){
+        DefaultComboBoxModel modelo= new DefaultComboBoxModel();
+        for(int i=0;i<proveedor.selectProveedor().size();i++){
+            modelo.addElement(proveedor.selectProveedor().get(i).getNit());
+        }
+        return modelo;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnSolicitar;
+    private javax.swing.JComboBox<String> cbNit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel panelSolicitar;
     private javax.swing.JTextField txtCantidad;
-    private javax.swing.JTextField txtNit;
     // End of variables declaration//GEN-END:variables
 }

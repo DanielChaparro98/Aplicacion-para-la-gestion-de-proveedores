@@ -12,10 +12,13 @@ import modelo.Proveedor;
 import services.Conexion;
 
 public class ProveedorDTO {
-	private final String INSERT_SQL="INSERT INTO PEDIDO (id,cantidadproveedors,estado,fechaEntrega) VALUES (?,?,?,?)";
-	private final String UPDATE_SQL="UPDATE PEDIDO SET cantidadproveedors=? ,estado=? , fechaEntrega=? WHERE id=?";
-	private final String DELETE_SQL="DELETE FROM PEDIDO WHERE id=?";
-	private final String SELECT_SQL="SELECT id,cantidadproveedors,estado,fechaEntrega WHERE id=?";
+	private final String INSERT_SQL="INSERT INTO PROVEEDOR (nit,nombre,telefono,id_producto) VALUES (?,?,?,?)";
+	private final String UPDATE_SQL="UPDATE proveedor SET nit=?,nombre=? ,telefono=? , id_producto=? WHERE id=?";
+	private final String DELETE_SQL="DELETE FROM proveedor WHERE id=?";
+	private final String SELECT_SQL="SELECT * FROM PROVEEDOR ";
+	private final String SELECT_ONE="SELECT * FROM PROVEEDOR WHERE id=?";
+	private final String SELECT_NIT="SELECT * FROM PROVEEDOR WHERE nit=?";
+	
 	private static ProveedorDTO proveedorDto;
 	
 	private ProveedorDTO() {
@@ -30,6 +33,9 @@ public class ProveedorDTO {
 	}
 	
 	public String insert(Proveedor proveedor) {
+		if(proveedor==null|| proveedor.getId()==null && proveedor.getNit()==null && proveedor.getNombre()==null && proveedor.getTelefono()==null) {
+			return "No se inserto ningun dato";
+		}
 		String mensaje = "";
 		Connection conn = null;
 		PreparedStatement stmt = null;
@@ -38,10 +44,10 @@ public class ProveedorDTO {
 			conn = Conexion.getConnection();
 			stmt = conn.prepareStatement(INSERT_SQL);
 			int index = 1;
-			stmt.setLong(index++, proveedor.getId());
 			stmt.setString(index++, proveedor.getNit());
 			stmt.setString(index++, proveedor.getNombre());
 			stmt.setString(index++, proveedor.getTelefono());
+			stmt.setLong(index++,proveedor.getIdProducto().getId());
 			row = stmt.executeUpdate();
 			mensaje = "se inserto" + row + "registro satisfactoriamente";
 
@@ -56,6 +62,9 @@ public class ProveedorDTO {
 	}
 
 	public String update(Proveedor proveedor) {
+		if(proveedor==null|| proveedor.getId()==null && proveedor.getNit()==null && proveedor.getNombre()==null && proveedor.getTelefono()==null) {
+			return "No se inserto ningun dato";
+		}
 		String mensaje="";
 		Connection conn=null;
 		PreparedStatement stmt=null;
@@ -64,10 +73,11 @@ public class ProveedorDTO {
 			conn=Conexion.getConnection();
 			stmt=conn.prepareStatement(UPDATE_SQL);
 			int index=1;
-			stmt.setLong(index++, proveedor.getId());
 			stmt.setString(index++, proveedor.getNit());
 			stmt.setString(index++, proveedor.getNombre());
-			stmt.setString(index, proveedor.getTelefono());
+			stmt.setString(index++, proveedor.getTelefono());
+			stmt.setLong(index++,proveedor.getIdProducto().getId());
+			stmt.setLong(index++, proveedor.getId());
 			row=stmt.executeUpdate();
 			mensaje="Se actualizo"+row+"registro satisfactoriamente";
 			
@@ -81,7 +91,10 @@ public class ProveedorDTO {
 		return mensaje;
 	}
 	
-	public String deleted(int id) {
+	public String deleted(Long id) {
+		if(id==null) {
+			return "No ha ingresado un id";
+		}
 		String mensaje="";
 		Connection conn=null;
 		PreparedStatement stmt=null;
@@ -90,7 +103,7 @@ public class ProveedorDTO {
 			conn=Conexion.getConnection();
 			stmt=conn.prepareStatement(DELETE_SQL);
 			int index=1;
-			stmt.setLong(index++, id);
+			stmt.setLong(index++,id);
 			row=stmt.executeUpdate();
 			mensaje="Se elimino"+row+"registro satisfactorio";
 		}catch (SQLException e) {
@@ -119,6 +132,7 @@ public class ProveedorDTO {
 				proveedor.setNit(rs.getString(2));
 				proveedor.setNombre(rs.getString(3));
 				proveedor.setTelefono(rs.getString(4));
+				proveedor.setIdProducto(ProductoDTO.instance().selectProducto(rs.getLong(5)));
 				lista.add(proveedor);
 			}
 			} catch (SQLException e) {
@@ -131,5 +145,60 @@ public class ProveedorDTO {
 			return lista;
 		}
 	
-
+		public Proveedor selectProveedor(Long id) {
+			Connection conn=null;
+			PreparedStatement stmt=null;
+			ResultSet rs=null;
+			Proveedor proveedor=null;
+			try {
+				conn=Conexion.getConnection();
+				stmt=conn.prepareStatement(SELECT_ONE);
+				stmt.setLong(1, id);
+				rs=stmt.executeQuery();
+				while(rs.next()) {
+					proveedor= new Proveedor();
+					proveedor.setId(rs.getLong(1));
+					proveedor.setNit(rs.getString(2));
+					proveedor.setNombre(rs.getString(3));
+					proveedor.setTelefono(rs.getString(4));
+					proveedor.setIdProducto(ProductoDTO.instance().selectProducto(rs.getLong(5)));
+				}
+			}catch(SQLException e) {
+				System.out.println("Error"+e.getMessage());
+			}finally {
+				Conexion.closed(conn);
+				Conexion.closed(stmt);
+				Conexion.closed(rs);
+			}
+			return proveedor;
+		}
+		
+		
+		public Proveedor selectProveedorNit(String Nit) {
+			Connection conn=null;
+			PreparedStatement stmt=null;
+			ResultSet rs=null;
+			Proveedor proveedor=null;
+			try {
+				conn=Conexion.getConnection();
+				stmt=conn.prepareStatement(SELECT_NIT);
+				stmt.setString(1, Nit);
+				rs=stmt.executeQuery();
+				while(rs.next()) {
+					proveedor= new Proveedor();
+					proveedor.setId(rs.getLong(1));
+					proveedor.setNit(rs.getString(2));
+					proveedor.setNombre(rs.getString(3));
+					proveedor.setTelefono(rs.getString(4));
+					proveedor.setIdProducto(ProductoDTO.instance().selectProducto(rs.getLong(5)));
+				}
+			}catch(SQLException e) {
+				System.out.println("Error"+e.getMessage());
+			}finally {
+				Conexion.closed(conn);
+				Conexion.closed(stmt);
+				Conexion.closed(rs);
+			}
+			return proveedor;
+		}
 }

@@ -8,6 +8,7 @@ public class Producto implements Serializable {
 	private String nombre;
 	private String tipo;
 	
+	
 	public Producto(Long id, String nombre, String tipo) {
 		super();
 		this.id = id;
@@ -15,6 +16,12 @@ public class Producto implements Serializable {
 		this.tipo = tipo;
 	}
 	
+	
+	public Producto( String nombre, String tipo) {
+
+		this.nombre = nombre;
+		this.tipo = tipo;
+	}
 	public Producto() {
 	}
 
@@ -35,6 +42,11 @@ public class Producto implements Serializable {
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + "]";
 	}
 	
 	

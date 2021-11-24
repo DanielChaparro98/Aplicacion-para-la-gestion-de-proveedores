@@ -5,6 +5,10 @@
  */
 package vista;
 
+import controlador.PedidoCtrl;
+import javax.swing.DefaultComboBoxModel;
+import modelo.Pedido;
+
 /**
  *
  * @author HP
@@ -14,8 +18,11 @@ public class CancelarPedidoForm extends javax.swing.JPanel {
     /**
      * Creates new form CancelarPedidoForm
      */
+    
+    PedidoCtrl pedido= new PedidoCtrl();
     public CancelarPedidoForm() {
         initComponents();
+        this.cbNumero.setModel(getModel());
     }
 
     /**
@@ -30,11 +37,13 @@ public class CancelarPedidoForm extends javax.swing.JPanel {
         panelCancelar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtNumero = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtMotivo = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        cbNumero = new javax.swing.JComboBox<>();
+
+        panelCancelar.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setText("Cancelar Pedido");
 
@@ -42,6 +51,11 @@ public class CancelarPedidoForm extends javax.swing.JPanel {
 
         jLabel3.setText("Motivo");
 
+        txtMotivo.setEditable(false);
+        txtMotivo.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnVolver.setBackground(new java.awt.Color(255, 153, 51));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-back-32.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,52 +63,61 @@ public class CancelarPedidoForm extends javax.swing.JPanel {
             }
         });
 
-        btnCancelar.setText("Cancelar");
+        btnCancelar.setBackground(new java.awt.Color(255, 153, 51));
+        btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-rollback-32.png"))); // NOI18N
+        btnCancelar.setText("Cancelar Pedido");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        cbNumero.setBackground(new java.awt.Color(255, 153, 51));
 
         javax.swing.GroupLayout panelCancelarLayout = new javax.swing.GroupLayout(panelCancelar);
         panelCancelar.setLayout(panelCancelarLayout);
         panelCancelarLayout.setHorizontalGroup(
             panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCancelarLayout.createSequentialGroup()
+                .addGap(132, 132, 132)
                 .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCancelarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCancelarLayout.createSequentialGroup()
-                            .addGap(40, 40, 40)
-                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelar))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelCancelarLayout.createSequentialGroup()
-                            .addGap(64, 64, 64)
-                            .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelCancelarLayout.createSequentialGroup()
+                        .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelCancelarLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(65, 65, 65)
-                            .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtNumero)
-                                .addComponent(txtMotivo, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelCancelarLayout.createSequentialGroup()
+                                .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                                .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtMotivo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(181, 181, 181))))
         );
         panelCancelarLayout.setVerticalGroup(
             panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCancelarLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(84, 84, 84)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
+                .addGap(50, 50, 50)
                 .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                    .addComponent(cbNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(60, 60, 60)
                 .addGroup(panelCancelarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver)
                     .addComponent(btnCancelar))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(102, 102, 102))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -118,15 +141,27 @@ public class CancelarPedidoForm extends javax.swing.JPanel {
         panelCancelar.repaint();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+       pedido.updateCancelacion(Long.parseLong(cbNumero.getSelectedItem().toString()),"Cancelacion" ,txtMotivo.getText());
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    
+    public DefaultComboBoxModel getModel(){
+        DefaultComboBoxModel modelo= new DefaultComboBoxModel();
+        for(int i=0;i<pedido.selectPedido().size();i++){
+            modelo.addElement(pedido.selectPedido().get(i).getId());
+        }
+        return modelo;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cbNumero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel panelCancelar;
     private javax.swing.JTextField txtMotivo;
-    private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 }

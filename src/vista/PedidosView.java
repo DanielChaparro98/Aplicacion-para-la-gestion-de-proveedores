@@ -6,6 +6,8 @@
 
 package vista;
 
+import controlador.PedidoCtrl;
+
 /**
  *
  * @author HP
@@ -13,8 +15,12 @@ package vista;
 public class PedidosView extends javax.swing.JPanel {
 
     /** Creates new form PedidosView */
+    
+    PedidoCtrl pedidoCtrl= new PedidoCtrl();
+    Principal principal ;
     public PedidosView() {
         initComponents();
+        this.cargarDatosPedidos();
     }
 
     /** This method is called from within the constructor to
@@ -31,9 +37,13 @@ public class PedidosView extends javax.swing.JPanel {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPedido = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
 
+        pedidos.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnAgregar.setBackground(new java.awt.Color(255, 153, 51));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-mobile-order-32.png"))); // NOI18N
         btnAgregar.setText("Agregar Pedido");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -41,6 +51,8 @@ public class PedidosView extends javax.swing.JPanel {
             }
         });
 
+        btnEditar.setBackground(new java.awt.Color(255, 153, 51));
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-tracking-32.png"))); // NOI18N
         btnEditar.setText("Aplazar Pedido");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,6 +60,8 @@ public class PedidosView extends javax.swing.JPanel {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(255, 153, 51));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-unavailable-32.png"))); // NOI18N
         btnEliminar.setText("Cancelar Pedido");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,7 +69,7 @@ public class PedidosView extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,8 +80,11 @@ public class PedidosView extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblPedido.setGridColor(new java.awt.Color(255, 153, 51));
+        jScrollPane1.setViewportView(tblPedido);
 
+        btnSalir.setBackground(new java.awt.Color(255, 153, 51));
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-home-32.png"))); // NOI18N
         btnSalir.setText("Volver al Inicio");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,51 +97,49 @@ public class PedidosView extends javax.swing.JPanel {
         pedidosLayout.setHorizontalGroup(
             pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pedidosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSalir))
-                    .addGroup(pedidosLayout.createSequentialGroup()
-                        .addComponent(btnAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminar)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addGroup(pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnSalir)
+                    .addGroup(pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pedidosLayout.createSequentialGroup()
+                            .addComponent(btnAgregar)
+                            .addGap(68, 68, 68)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminar))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 48, Short.MAX_VALUE))
         );
         pedidosLayout.setVerticalGroup(
             pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pedidosLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
+            .addGroup(pedidosLayout.createSequentialGroup()
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addGroup(pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnEditar)
                     .addComponent(btnEliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSalir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(50, 50, 50))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-            Principal principal =new Principal();    
-            principal.setSize(500, 500);
+            principal=new Principal(); 
+            principal.setSize(600, 800);
             pedidos.removeAll();
             pedidos.add(principal);
             pedidos.revalidate();
@@ -151,7 +166,7 @@ public class PedidosView extends javax.swing.JPanel {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
             CancelarPedidoForm cancelarPedido =new CancelarPedidoForm();    
-            cancelarPedido.setSize(500, 500);
+            cancelarPedido.setSize(800, 900);
             pedidos.removeAll();
             pedidos.add(cancelarPedido);
             pedidos.revalidate();
@@ -159,14 +174,18 @@ public class PedidosView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
 
+    public void cargarDatosPedidos(){
+        tblPedido.setModel(pedidoCtrl.tablaPedido());
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel pedidos;
+    private javax.swing.JTable tblPedido;
     // End of variables declaration//GEN-END:variables
 
 }

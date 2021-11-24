@@ -5,6 +5,11 @@
  */
 package vista;
 
+import controlador.ProductoCtrl;
+import controlador.ProveedorCtrl;
+import java.awt.Point;
+import javax.swing.JTable;
+
 /**
  *
  * @author HP
@@ -14,8 +19,11 @@ public class ProveedoresView extends javax.swing.JPanel {
     /**
      * Creates new form ProveedoresView
      */
+    ProveedorCtrl proveedorCtrl= new ProveedorCtrl();
+    Long id=0L;
     public ProveedoresView() {
         initComponents();
+        this.cargarDatosProveedores();
     }
 
     /**
@@ -33,8 +41,12 @@ public class ProveedoresView extends javax.swing.JPanel {
         btnEliminar = new javax.swing.JButton();
         btnInicio = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblProveedores = new javax.swing.JTable();
 
+        proveedores.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnAgregar.setBackground(new java.awt.Color(255, 153, 51));
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-add-administrator-32.png"))); // NOI18N
         btnAgregar.setText("Agregar Proveedor");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -42,6 +54,8 @@ public class ProveedoresView extends javax.swing.JPanel {
             }
         });
 
+        btnModificar.setBackground(new java.awt.Color(255, 153, 51));
+        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-edit-account-32.png"))); // NOI18N
         btnModificar.setText("Modificar Proveedor");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,6 +63,8 @@ public class ProveedoresView extends javax.swing.JPanel {
             }
         });
 
+        btnEliminar.setBackground(new java.awt.Color(255, 153, 51));
+        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-employee-32.png"))); // NOI18N
         btnEliminar.setText("Eliminar Proveedor");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +72,8 @@ public class ProveedoresView extends javax.swing.JPanel {
             }
         });
 
+        btnInicio.setBackground(new java.awt.Color(255, 153, 51));
+        btnInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-home-32.png"))); // NOI18N
         btnInicio.setText("Volver al Inicio");
         btnInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,7 +81,9 @@ public class ProveedoresView extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProveedores.setAutoCreateRowSorter(true);
+        tblProveedores.setBackground(new java.awt.Color(255, 153, 51));
+        tblProveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -74,41 +94,45 @@ public class ProveedoresView extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblProveedores.setGridColor(new java.awt.Color(255, 153, 51));
+        tblProveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProveedoresMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblProveedores);
 
         javax.swing.GroupLayout proveedoresLayout = new javax.swing.GroupLayout(proveedores);
         proveedores.setLayout(proveedoresLayout);
         proveedoresLayout.setHorizontalGroup(
             proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, proveedoresLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, proveedoresLayout.createSequentialGroup()
-                        .addComponent(btnAgregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnModificar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(11, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, proveedoresLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnInicio)
-                .addGap(66, 66, 66))
+            .addGroup(proveedoresLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnInicio)
+                    .addGroup(proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(proveedoresLayout.createSequentialGroup()
+                            .addComponent(btnAgregar)
+                            .addGap(56, 56, 56)
+                            .addComponent(btnModificar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         proveedoresLayout.setVerticalGroup(
             proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(proveedoresLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addGroup(proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnInicio)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(82, 82, 82))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -125,7 +149,7 @@ public class ProveedoresView extends javax.swing.JPanel {
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         Principal principal = new Principal();
-        principal.setSize(500, 500);
+        principal.setSize(700, 1500);
         proveedores.removeAll();
         proveedores.add(principal);
         proveedores.revalidate();
@@ -134,6 +158,7 @@ public class ProveedoresView extends javax.swing.JPanel {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         RegistrarProveedoresForm registrar = new RegistrarProveedoresForm();
+        registrar.setLocation(30, -220);
         registrar.setSize(500, 500);
         proveedores.removeAll();
         proveedores.add(registrar);
@@ -151,22 +176,39 @@ public class ProveedoresView extends javax.swing.JPanel {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        EliminarProveedorForm eliminarProveedor = new EliminarProveedorForm();
-        eliminarProveedor.setSize(500, 500);
-        proveedores.removeAll();
-        proveedores.add(eliminarProveedor);
-        proveedores.revalidate();
-        proveedores.repaint();
+
+         proveedorCtrl.deleteProveedor(id);
+         this.cargarDatosProveedores();
+//        EliminarProveedorForm eliminarProveedor = new EliminarProveedorForm();
+//        eliminarProveedor.setSize(500, 500);
+//        proveedores.removeAll();
+//        proveedores.add(eliminarProveedor);
+//        proveedores.revalidate();
+//        proveedores.repaint();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    private void tblProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProveedoresMouseClicked
+       JTable table=(JTable) evt.getSource();
+       Point point=evt.getPoint();
+       int row=table.rowAtPoint(point);
+       if(evt.getClickCount()==1){
+         id= (Long.parseLong(tblProveedores.getValueAt(tblProveedores.getSelectedRow(), 0).toString()));
+       }
+       
+       
+    }//GEN-LAST:event_tblProveedoresMouseClicked
 
+
+    public void cargarDatosProveedores(){
+        tblProveedores.setModel(proveedorCtrl.tablaProveedor());
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnInicio;
     private javax.swing.JButton btnModificar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel proveedores;
+    private javax.swing.JTable tblProveedores;
     // End of variables declaration//GEN-END:variables
 }

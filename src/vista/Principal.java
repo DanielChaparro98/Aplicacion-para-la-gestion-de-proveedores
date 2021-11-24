@@ -5,11 +5,13 @@
  */
 package vista;
 
+import controlador.PedidoCtrl;
+
 /**
  *
  * @author HP
  */
-public class Principal extends javax.swing.JPanel {
+public final class Principal extends javax.swing.JPanel {
 
     /**
      * Creates new form Principal
@@ -17,11 +19,13 @@ public class Principal extends javax.swing.JPanel {
     ProveedoresView proveedores;
     PedidosView pedidos;
     ProductosView productos;
+    PedidoCtrl pedidoCtrl = new PedidoCtrl();
     public Principal() {
         initComponents();
         proveedores= new  ProveedoresView();
         pedidos= new PedidosView();
         productos= new ProductosView();
+        this.cargarDatosPedido();
     }
 
     /**
@@ -39,12 +43,15 @@ public class Principal extends javax.swing.JPanel {
         btnPedidos = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPedidos = new javax.swing.JTable();
         btnSalir = new javax.swing.JButton();
+
+        panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Pedidos");
 
+        btnProductos.setBackground(new java.awt.Color(255, 153, 51));
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/producto.png"))); // NOI18N
         btnProductos.setText("Productos");
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -53,6 +60,7 @@ public class Principal extends javax.swing.JPanel {
             }
         });
 
+        btnPedidos.setBackground(new java.awt.Color(255, 153, 51));
         btnPedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/orden.png"))); // NOI18N
         btnPedidos.setText("Pedidos");
         btnPedidos.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +69,7 @@ public class Principal extends javax.swing.JPanel {
             }
         });
 
+        btnProveedores.setBackground(new java.awt.Color(255, 153, 51));
         btnProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/proveedor.png"))); // NOI18N
         btnProveedores.setText("Proveedores");
         btnProveedores.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +78,7 @@ public class Principal extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -80,8 +89,11 @@ public class Principal extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblPedidos.setGridColor(new java.awt.Color(255, 153, 51));
+        tblPedidos.setInheritsPopupMenu(true);
+        jScrollPane1.setViewportView(tblPedidos);
 
+        btnSalir.setBackground(new java.awt.Color(255, 153, 51));
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.png"))); // NOI18N
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,39 +106,41 @@ public class Principal extends javax.swing.JPanel {
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelPrincipalLayout.createSequentialGroup()
-                            .addComponent(btnProductos)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnProveedores))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                                .addComponent(btnProductos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                                .addComponent(btnPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(104, 104, 104)
+                                .addComponent(btnProveedores)))))
+                .addGap(56, 56, 56))
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addComponent(jLabel1)
+                .addGap(32, 32, 32)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnProveedores)
+                    .addComponent(btnPedidos)
+                    .addComponent(btnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnPedidos)
-                        .addComponent(btnProveedores))
-                    .addComponent(btnProductos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnSalir)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -146,7 +160,7 @@ public class Principal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductosActionPerformed
-        productos.setSize(500, 500);
+        productos.setSize(800, 500);
         productos.setLocation(0, 0);
         panelPrincipal.removeAll();
         panelPrincipal.add(productos);
@@ -155,7 +169,7 @@ public class Principal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnProductosActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
-        pedidos.setSize(500, 500);
+        pedidos.setSize(700, 700);
         panelPrincipal.removeAll();
         panelPrincipal.add(pedidos);
         panelPrincipal.revalidate();
@@ -163,13 +177,18 @@ public class Principal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        proveedores.setSize(500, 500);
+        proveedores.setSize(800, 500);
         panelPrincipal.removeAll();
         panelPrincipal.add(proveedores);
         panelPrincipal.revalidate();
         panelPrincipal.repaint();
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
+    
+    
+    public void cargarDatosPedido(){
+        tblPedidos.setModel(pedidoCtrl.tablaPedido());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnPedidos;
@@ -178,7 +197,7 @@ public class Principal extends javax.swing.JPanel {
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JTable tblPedidos;
     // End of variables declaration//GEN-END:variables
 }
