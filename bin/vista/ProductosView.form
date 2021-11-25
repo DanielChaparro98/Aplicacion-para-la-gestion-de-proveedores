@@ -16,62 +16,67 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="panelProducto" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
-      </Group>
-    </DimensionLayout>
-    <DimensionLayout dim="1">
-      <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="panelProducto" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="panelProducto" alignment="0" max="32767" attributes="0"/>
+      </Group>
+    </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="panelProducto">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
+                          <Component id="btnInicio" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jScrollPane1" min="-2" pref="583" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                                  <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                                  <Component id="btnEliminar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="31" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="btnInicio" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                  <EmptySpace pref="72" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                  <EmptySpace pref="56" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnAgregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="153" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnInicio" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="405" max="32767" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,6 +84,12 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnEliminar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="99" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagenes/icons8-open-box-32.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Eliminar Producto"/>
           </Properties>
           <Events>
@@ -94,6 +105,9 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblProductos">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="99" red="ff" type="rgb"/>
+                </Property>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="4" rowCount="4">
                     <Column editable="true" title="Title 1" type="java.lang.Object"/>
@@ -101,6 +115,9 @@
                     <Column editable="true" title="Title 3" type="java.lang.Object"/>
                     <Column editable="true" title="Title 4" type="java.lang.Object"/>
                   </Table>
+                </Property>
+                <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="99" red="ff" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
@@ -111,6 +128,12 @@
         </Container>
         <Component class="javax.swing.JButton" name="btnInicio">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="99" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagenes/icons8-home-32.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Volver al inicio"/>
           </Properties>
           <Events>
@@ -119,6 +142,12 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnEditar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="99" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagenes/icons8-product-management-32.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Editar Producto"/>
           </Properties>
           <Events>
@@ -127,6 +156,12 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnAgregar">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="99" red="ff" type="rgb"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Imagenes/icons8-add-product-32.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Agregar Producto"/>
           </Properties>
           <Events>

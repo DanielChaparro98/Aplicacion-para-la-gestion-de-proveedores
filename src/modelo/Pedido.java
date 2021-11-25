@@ -27,11 +27,12 @@ public class Pedido implements Serializable {
 		this.idProveedor=idProveedor;
 	}
 	
-	public Pedido( Long cantidadProductos, String estado, Date fechaEntrega,Proveedor idProveedor) {
+	public Pedido( Long cantidadProductos, String estado, Date fechaEntrega,String motivo,Proveedor idProveedor) {
 		
 		this.cantidadProductos = cantidadProductos;
 		this.estado = estado;
 		this.fechaEntrega = fechaEntrega;
+		this.motivo=motivo;
 		this.idProveedor=idProveedor;
 	}
         

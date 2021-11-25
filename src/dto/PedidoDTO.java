@@ -13,7 +13,7 @@ import services.Conexion;
 
 public class PedidoDTO {
 
-	private final String INSERT_SQL = "INSERT INTO PEDIDO (cantidad_productos,estado,fecha_entrega,id_proveedor) VALUES (?,?,?,?)";
+	private final String INSERT_SQL = "INSERT INTO PEDIDO (cantidad_productos,estado,fecha_entrega,motivo,id_proveedor) VALUES (?,?,?,?,?)";
 	private final String UPDATE_SQL = "UPDATE PEDIDO SET estado=? , fecha_entrega=?,motivo=? WHERE id=?";
 	private final String UPDATE_SQL_C = "UPDATE PEDIDO SET estado=?,motivo=? WHERE id=?";
 	private final String DELETE_SQL = "DELETE FROM PEDIDO WHERE id=?";
@@ -51,6 +51,7 @@ public class PedidoDTO {
 			stmt.setLong(index++, pedido.getCantidadProductos());
 			stmt.setString(index++, pedido.getEstado());
 			stmt.setDate(index++, pedido.getFechaEntrega());
+			stmt.setString(index++,pedido.getMotivo());
 			stmt.setLong(index++,pedido.getIdProveedor().getId());
 			row = stmt.executeUpdate();
 			mensaje = "se inserto" + row + "registro satisfactoriamente";

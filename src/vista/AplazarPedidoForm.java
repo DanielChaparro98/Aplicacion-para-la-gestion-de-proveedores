@@ -6,11 +6,13 @@
 package vista;
 
 import controlador.PedidoCtrl;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -49,12 +51,24 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
 
         jLabel3.setText("jLabel3");
 
+        panelAplazar.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 153, 51));
         jLabel1.setText("Pedido Aplazado");
 
         jLabel2.setText("Número Pedido");
 
         jLabel4.setText("Motivo");
 
+        txtMotivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMotivoKeyTyped(evt);
+            }
+        });
+
+        btnVolver.setBackground(new java.awt.Color(255, 153, 51));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-back-32.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,7 +76,9 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
             }
         });
 
-        btnAplazar.setText("Aceptar");
+        btnAplazar.setBackground(new java.awt.Color(255, 153, 51));
+        btnAplazar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-rescheduling-a-task-32.png"))); // NOI18N
+        btnAplazar.setText("Aplazar");
         btnAplazar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAplazarActionPerformed(evt);
@@ -73,49 +89,53 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
         panelAplazar.setLayout(panelAplazarLayout);
         panelAplazarLayout.setHorizontalGroup(
             panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAplazarLayout.createSequentialGroup()
-                .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAplazarLayout.createSequentialGroup()
+                .addContainerGap(63, Short.MAX_VALUE)
+                .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelAplazarLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel1))
-                    .addGroup(panelAplazarLayout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(btnVolver))
-                        .addGap(18, 18, 18)
-                        .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtMotivo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                            .addComponent(btnAplazar)
-                            .addComponent(cbNumero, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addComponent(btnVolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAplazar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAplazarLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAplazarLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelAplazarLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 49, Short.MAX_VALUE)))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         panelAplazarLayout.setVerticalGroup(
             panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAplazarLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelAplazarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver)
-                    .addComponent(btnAplazar))
-                .addContainerGap(83, Short.MAX_VALUE))
+                    .addComponent(btnAplazar)
+                    .addComponent(btnVolver))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelAplazar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelAplazar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,11 +145,12 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         PedidosView pedidos= new PedidosView();
-        pedidos.setSize(panelAplazar.getSize());
-        panelAplazar.removeAll();
-        panelAplazar.add(pedidos);
-        panelAplazar.revalidate();
-        panelAplazar.repaint();
+        pedidos.setSize(panelAplazar.getWidth(),panelAplazar.getHeight());
+        this.setLayout(null);
+        this.panelAplazar.removeAll();
+        this.panelAplazar.add(pedidos);
+        this.panelAplazar.revalidate();
+        this.panelAplazar.repaint();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnAplazarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAplazarActionPerformed
@@ -137,8 +158,24 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
     
         java.sql.Date sql= new java.sql.Date(date.getTime());
         pedido.updatePedido(Long.parseLong(cbNumero.getSelectedItem().toString()), "Aplazado", sql,txtMotivo.getText());
+        JOptionPane.showMessageDialog(null, "La nueva fecha de entrega es "+sql);
         txtMotivo.setText("");
     }//GEN-LAST:event_btnAplazarActionPerformed
+
+    private void txtMotivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMotivoKeyTyped
+         char car=evt.getKeyChar();
+      
+       if((car<'a' || car>'z') && (car<'A'||car>'Z') && (car!=(char)KeyEvent.VK_BACK_SPACE)&&(car!=(char)KeyEvent.VK_SPACE)){
+           evt.consume();
+           getToolkit().beep();
+           JOptionPane.showMessageDialog(this, "Solo se admite texto","Advertencia", JOptionPane.WARNING_MESSAGE);
+       }
+          if(txtMotivo.getText().length() >= 21)
+    {
+        evt.consume();
+        JOptionPane.showMessageDialog(this,"Solo 20 caracteres","Error de formato",JOptionPane.INFORMATION_MESSAGE);
+    }
+    }//GEN-LAST:event_txtMotivoKeyTyped
 
     public DefaultComboBoxModel getModel(){
         DefaultComboBoxModel modelo= new DefaultComboBoxModel();
@@ -150,10 +187,15 @@ public class AplazarPedidoForm extends javax.swing.JPanel {
     
     public  Date getRandomDate() {
         Date date= pedido.selectPedido(Long.parseLong(cbNumero.getSelectedItem().toString())).getFechaEntrega();
-		Random rand = new Random();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ");
+		     
+                      
+        Random rand = new Random();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy");
+                String año =format.format(date);
+                int años=Integer.parseInt(año);
+                System.out.println(años);
 		Calendar cal = Calendar.getInstance();
-		cal.set(date.getYear(), date.getMonth(), date.getDay());
+		cal.set(años, date.getMonth(), date.getDay());
 		long start = cal.getTimeInMillis();
 		cal.set(2022, 8, 30);
 		long end = cal.getTimeInMillis();

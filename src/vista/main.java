@@ -23,8 +23,8 @@ public class main {
 		  
 		
 		ProductoCtrl producto= new ProductoCtrl();
-//		producto.saveProducto("pedsasde","dasds");
-//		Producto producto1=producto.selectProducto(2L);
+		//producto.saveProducto("pedsasde","dasds");
+		Producto producto1=producto.selectProducto(2L);
 //		System.out.println(producto1.toString());
 //		List<Producto> productos=producto.selectProducto();
 //		for (Producto producto2 : productos) {
@@ -33,11 +33,11 @@ public class main {
 		
 		ProveedorCtrl proveedor = new ProveedorCtrl();
 		ProveedorDTO dto= ProveedorDTO.instance();
-//		proveedor.saveProveedor("", "", "", producto1);
+		//proveedor.saveProveedor("", "", "", producto1);
 //		proveedor.updateProveedor(1L, "245325", "nombre9", "34534", producto1);
 	//dto.deleted(1L);
 		//proveedor.deleteProveedor(1L);
-		Proveedor proveedord= proveedor.selectProveedor(2L);
+		Proveedor proveedord= proveedor.selectProveedor(11L);
 				//proveedor.selectProveedorNit("245325");
 //		for (Proveedor proveedor2 : proveedord) {
 //			System.out.println(proveedor2.toString());
@@ -55,7 +55,7 @@ public class main {
 //        System.out.println(sql.toString());
 		
 		Random rand = new Random();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 		cal.set(2020, 0, 1);
 		long start = cal.getTimeInMillis();
@@ -66,8 +66,8 @@ public class main {
 		
 	PedidoDTO pedidoDto= PedidoDTO.instance();
 	PedidoCtrl pedido= new PedidoCtrl();
-	//pedido.savePedido(2L, "eew",sql,proveedord );
-    pedido.updatePedido(1L, "Aplazado", sql, "Porque si");
+	pedido.savePedido(1L, "", sql,"" ,proveedord);
+    //pedido.updatePedido(1L, "Aplazado", sql, "Porque si");
 	List<Pedido> pedidos=pedido.selectPedido();
     
 	for (Pedido pedido2 : pedidos) {

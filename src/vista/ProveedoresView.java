@@ -107,72 +107,80 @@ public class ProveedoresView extends javax.swing.JPanel {
         proveedoresLayout.setHorizontalGroup(
             proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(proveedoresLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
                 .addGroup(proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnInicio)
-                    .addGroup(proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(proveedoresLayout.createSequentialGroup()
-                            .addComponent(btnAgregar)
-                            .addGap(56, 56, 56)
-                            .addComponent(btnModificar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(105, Short.MAX_VALUE))
+                    .addGroup(proveedoresLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, proveedoresLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnInicio)
+                            .addGroup(proveedoresLayout.createSequentialGroup()
+                                .addComponent(btnAgregar)
+                                .addGap(30, 30, 30)
+                                .addComponent(btnModificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         proveedoresLayout.setVerticalGroup(
             proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(proveedoresLayout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addGroup(proveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnInicio)
-                .addGap(82, 82, 82))
+                .addGap(89, 89, 89))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(proveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(proveedores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         Principal principal = new Principal();
-        principal.setSize(700, 1500);
-        proveedores.removeAll();
-        proveedores.add(principal);
-        proveedores.revalidate();
-        proveedores.repaint();
+        principal.setSize(proveedores.getWidth(), proveedores.getHeight());
+        this.setLayout(null);
+        this.proveedores.removeAll();
+        this.proveedores.add(principal);
+        this.proveedores.revalidate();
+        this.proveedores.repaint();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         RegistrarProveedoresForm registrar = new RegistrarProveedoresForm();
-        registrar.setLocation(30, -220);
-        registrar.setSize(500, 500);
-        proveedores.removeAll();
-        proveedores.add(registrar);
-        proveedores.revalidate();
-        proveedores.repaint();
+        //registrar.setLocation(30, -220);
+        registrar.setSize(proveedores.getWidth(), proveedores.getHeight());
+        this.setLayout(null);
+        this.proveedores.removeAll();
+        this.proveedores.add(registrar);
+        this.proveedores.revalidate();
+        this.proveedores.repaint();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         ActualizarProveedorForm actualizarProveedor = new ActualizarProveedorForm();
-        actualizarProveedor.setSize(500, 500);
-        proveedores.removeAll();
-        proveedores.add(actualizarProveedor);
-        proveedores.revalidate();
-        proveedores.repaint();
+        actualizarProveedor.setSize(proveedores.getWidth(), proveedores.getHeight());
+        this.setLayout(null);
+        this.proveedores.removeAll();
+        this.proveedores.add(actualizarProveedor);
+        this.proveedores.revalidate();
+        this.proveedores.repaint();
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

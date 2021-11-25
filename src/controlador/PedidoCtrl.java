@@ -46,10 +46,10 @@ public class PedidoCtrl {
 		this.pedidoDTO = pedidoDTO;
 	}
 
-	public String savePedido(Long cantidadProductos, String estado, Date fechaEntrega, Proveedor idProveedor) {
+	public String savePedido(Long cantidadProductos, String estado, Date fechaEntrega, String motivo,Proveedor idProveedor) {
 		String mensaje="";
 			JOptionPane.showMessageDialog(null, "Pedido creado exitosamente");
-			pedido = new Pedido( cantidadProductos, estado, fechaEntrega, idProveedor);
+			pedido = new Pedido( cantidadProductos, estado, fechaEntrega,motivo ,idProveedor);
 			mensaje = pedidoDTO.insert(pedido);
 		
 

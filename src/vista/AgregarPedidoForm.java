@@ -7,11 +7,13 @@ package vista;
 
 import controlador.PedidoCtrl;
 import controlador.ProveedorCtrl;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,6 +50,10 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         cbNit = new javax.swing.JComboBox<>();
 
+        panelSolicitar.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnSolicitar.setBackground(new java.awt.Color(255, 153, 51));
+        btnSolicitar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-set-as-resume-32.png"))); // NOI18N
         btnSolicitar.setText("Solicitar");
         btnSolicitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,8 +61,12 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 153, 51));
         jLabel1.setText("Realizar Pedido");
 
+        btnAtras.setBackground(new java.awt.Color(255, 153, 51));
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-back-32.png"))); // NOI18N
         btnAtras.setText("Volver");
         btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +76,12 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
 
         jLabel2.setText("NIT Proveedor");
 
+        txtCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadKeyTyped(evt);
+            }
+        });
+
         jLabel3.setText("Cantidad Productos");
 
         javax.swing.GroupLayout panelSolicitarLayout = new javax.swing.GroupLayout(panelSolicitar);
@@ -73,55 +89,51 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
         panelSolicitarLayout.setHorizontalGroup(
             panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSolicitarLayout.createSequentialGroup()
-                .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(60, 60, 60)
+                .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelSolicitarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1))
-                    .addGroup(panelSolicitarLayout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(63, 63, 63)
-                        .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                            .addComponent(cbNit, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(panelSolicitarLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addComponent(btnSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(265, Short.MAX_VALUE))
+                        .addComponent(btnAtras)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSolicitar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSolicitarLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbNit, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelSolicitarLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(91, 91, 91))
+            .addGroup(panelSolicitarLayout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(jLabel1)
+                .addContainerGap(190, Short.MAX_VALUE))
         );
         panelSolicitarLayout.setVerticalGroup(
             panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSolicitarLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelSolicitarLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel3))
-                    .addGroup(panelSolicitarLayout.createSequentialGroup()
-                        .addComponent(cbNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(41, 41, 41)
+                .addGap(33, 33, 33)
+                .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
                 .addGroup(panelSolicitarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAtras)
                     .addComponent(btnSolicitar))
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelSolicitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelSolicitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,10 +144,11 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         PedidosView pedidos = new PedidosView();
         pedidos.setSize(panelSolicitar.getSize());
-        panelSolicitar.removeAll();
-        panelSolicitar.add(pedidos);
-        panelSolicitar.revalidate();
-        panelSolicitar.repaint();
+        this.setLayout(null);
+        this.panelSolicitar.removeAll();
+        this.panelSolicitar.add(pedidos);
+        this.panelSolicitar.revalidate();
+        this.panelSolicitar.repaint();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSolicitarActionPerformed
@@ -143,12 +156,25 @@ public class AgregarPedidoForm extends javax.swing.JPanel {
     
         java.sql.Date sql= new java.sql.Date(date.getTime());
         
-        pedido.savePedido(Long.parseLong(txtCantidad.getText()),"En proceso" , sql , proveedor.selectProveedorNit(cbNit.getSelectedItem().toString()));
+        pedido.savePedido(Long.parseLong(txtCantidad.getText()),"En proceso" , sql , "" ,proveedor.selectProveedorNit(cbNit.getSelectedItem().toString()));
         txtCantidad.setText("");
     }//GEN-LAST:event_btnSolicitarActionPerformed
 
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        char c=evt.getKeyChar();
+        if((c<'0' ||c>'9') && (c!=(char)KeyEvent.VK_BACK_SPACE)){
+            evt.consume();
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this,"Solo se digitan numeros","Error de formato",JOptionPane.INFORMATION_MESSAGE);
+        }
+             if(txtCantidad.getText().length() >= 5)
+    {
+        evt.consume();
+        JOptionPane.showMessageDialog(this,"Solo 5 digitos","Error de formato",JOptionPane.INFORMATION_MESSAGE);
+    }
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
      public  Date getRandomDate() {
-                Date date= pedido.selectPedido(Long.parseLong(cbNit.getSelectedItem().toString())).getFechaEntrega();
 		Random rand = new Random();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd ");
 		Calendar cal = Calendar.getInstance();

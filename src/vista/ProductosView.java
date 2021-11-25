@@ -92,7 +92,7 @@ public class ProductosView extends javax.swing.JPanel {
         });
 
         btnAgregar.setBackground(new java.awt.Color(255, 153, 51));
-        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-inventory-32.png"))); // NOI18N
+        btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-add-product-32.png"))); // NOI18N
         btnAgregar.setText("Agregar Producto");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,74 +105,79 @@ public class ProductosView extends javax.swing.JPanel {
         panelProductoLayout.setHorizontalGroup(
             panelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProductoLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(panelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnInicio)
-                    .addGroup(panelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelProductoLayout.createSequentialGroup()
-                            .addComponent(btnAgregar)
-                            .addGap(85, 85, 85)
-                            .addComponent(btnEditar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEliminar)
-                            .addGap(17, 17, 17))))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGroup(panelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelProductoLayout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(btnInicio))
+                    .addGroup(panelProductoLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(panelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelProductoLayout.createSequentialGroup()
+                                .addComponent(btnAgregar)
+                                .addGap(68, 68, 68)
+                                .addComponent(btnEditar)
+                                .addGap(68, 68, 68)
+                                .addComponent(btnEliminar)))))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         panelProductoLayout.setVerticalGroup(
             panelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProductoLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(panelProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnEditar)
                     .addComponent(btnEliminar))
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(18, 18, 18)
                 .addComponent(btnInicio)
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         AgregarProductoForm agregarProducto = new AgregarProductoForm();
-        agregarProducto.setSize(500, 500);
-        panelProducto.removeAll();
-        panelProducto.add(agregarProducto);
-        panelProducto.revalidate();
-        panelProducto.repaint();
+        agregarProducto.setSize(panelProducto.getWidth(),panelProducto.getHeight());
+        this.setLayout(null);
+        this.panelProducto.removeAll();
+        this.panelProducto.add(agregarProducto);
+        this.panelProducto.revalidate();
+        this.panelProducto.repaint();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
         Principal principal = new Principal();
-        principal.setSize(550, 500);
-        panelProducto.removeAll();
-        panelProducto.add(principal);
-        panelProducto.revalidate();
-        panelProducto.repaint();
+        principal.setSize(panelProducto.getWidth(), panelProducto.getHeight());
+        this.setLayout(null);
+        this.panelProducto.removeAll();
+        this.panelProducto.add(principal);
+        this.panelProducto.revalidate();
+        this.panelProducto.repaint();
     }//GEN-LAST:event_btnInicioActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         ActualizarProductoForm actualizarProducto = new ActualizarProductoForm();
-        actualizarProducto.setSize(500, 500);
-        panelProducto.removeAll();
-        panelProducto.add(actualizarProducto);
-        panelProducto.revalidate();
-        panelProducto.repaint();
+        actualizarProducto.setSize(panelProducto.getWidth(), panelProducto.getHeight());
+        this.setLayout(null);
+        this.panelProducto.removeAll();
+        this.panelProducto.add(actualizarProducto);
+        this.panelProducto.revalidate();
+        this.panelProducto.repaint();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed

@@ -7,7 +7,9 @@ package vista;
 
 import controlador.ProductoCtrl;
 import controlador.ProveedorCtrl;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import modelo.Proveedor;
 
 /**
@@ -25,7 +27,8 @@ public class ActualizarProveedorForm extends javax.swing.JPanel {
         initComponents();
         this.cbProducto.setModel(getModel());
         this.cbId.setModel(getModelProveedor());
-        Proveedor proveedor1= proveedor.selectProveedor(Long.parseLong(cbId.getSelectedItem().toString()));
+        Long valor=Long.parseLong(cbId.getSelectedItem().toString());
+        Proveedor proveedor1= proveedor.selectProveedor(valor);
         txtNit.setText(proveedor1.getNit());
     }
 
@@ -50,15 +53,35 @@ public class ActualizarProveedorForm extends javax.swing.JPanel {
         btnActualizar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtNit = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        cbId = new javax.swing.JComboBox<>();
 
+        panelProveedores.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 153, 51));
         jLabel1.setText("Actualizar Proveedor");
 
         jLabel2.setText("Nombre");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
         jLabel3.setText("Telefono");
+
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Producto");
 
+        btnVolver.setBackground(new java.awt.Color(255, 153, 51));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-back-32.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +89,8 @@ public class ActualizarProveedorForm extends javax.swing.JPanel {
             }
         });
 
+        btnActualizar.setBackground(new java.awt.Color(255, 153, 51));
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-edit-property-32.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,72 +102,72 @@ public class ActualizarProveedorForm extends javax.swing.JPanel {
 
         txtNit.setEditable(false);
 
+        jLabel5.setText("Id");
+
         javax.swing.GroupLayout panelProveedoresLayout = new javax.swing.GroupLayout(panelProveedores);
         panelProveedores.setLayout(panelProveedoresLayout);
         panelProveedoresLayout.setHorizontalGroup(
             panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProveedoresLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProveedoresLayout.createSequentialGroup()
-                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(59, 59, 59)
+                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelProveedoresLayout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(panelProveedoresLayout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProveedoresLayout.createSequentialGroup()
-                                    .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel6))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                                        .addComponent(txtNit))))
-                            .addGroup(panelProveedoresLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
-                                .addComponent(cbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(panelProveedoresLayout.createSequentialGroup()
-                        .addGap(88, 88, 88)
                         .addComponent(btnVolver)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(40, 40, 40)
-                .addComponent(btnActualizar)
-                .addGap(77, 77, 77))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnActualizar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProveedoresLayout.createSequentialGroup()
+                        .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProveedoresLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(89, 89, 89))
+            .addGroup(panelProveedoresLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 101, Short.MAX_VALUE))
         );
         panelProveedoresLayout.setVerticalGroup(
             panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProveedoresLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelProveedoresLayout.createSequentialGroup()
-                        .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel3))
-                    .addGroup(panelProveedoresLayout.createSequentialGroup()
-                        .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cbId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbProducto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(32, 32, 32)
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnActualizar)
                     .addComponent(btnVolver))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addGap(111, 111, 111))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -153,19 +178,18 @@ public class ActualizarProveedorForm extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelProveedores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelProveedores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         ProveedoresView proveedores = new ProveedoresView();
-        proveedores.setSize(panelProveedores.getSize());
-        panelProveedores.removeAll();
-        panelProveedores.add(proveedores);
-        panelProveedores.revalidate();
-        panelProveedores.repaint();
+        proveedores.setSize(panelProveedores.getWidth(),panelProveedores.getHeight());
+        this.setLayout(null);
+        this.panelProveedores.removeAll();
+        this.panelProveedores.add(proveedores);
+        this.panelProveedores.revalidate();
+        this.panelProveedores.repaint();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -174,6 +198,26 @@ public class ActualizarProveedorForm extends javax.swing.JPanel {
         txtNombre.setText("");
         txtTelefono.setText("");
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+          char car=evt.getKeyChar();
+      
+       if((car<'a' || car>'z') && (car<'A'||car>'Z') && (car!=(char)KeyEvent.VK_BACK_SPACE)&&(car!=(char)KeyEvent.VK_SPACE)){
+           evt.consume();
+           getToolkit().beep();
+           JOptionPane.showMessageDialog(this, "Solo se admite texto","Advertencia", JOptionPane.WARNING_MESSAGE);
+       }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+         char car=evt.getKeyChar();
+      
+       if((car<'a' || car>'z') && (car<'A'||car>'Z') && (car!=(char)KeyEvent.VK_BACK_SPACE)&&(car!=(char)KeyEvent.VK_SPACE)){
+           evt.consume();
+           getToolkit().beep();
+           JOptionPane.showMessageDialog(this, "Solo se admite texto","Advertencia", JOptionPane.WARNING_MESSAGE);
+       }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     
     public DefaultComboBoxModel getModel(){
@@ -196,11 +240,13 @@ public class ActualizarProveedorForm extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JComboBox<String> cbId;
     private javax.swing.JComboBox<String> cbProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel panelProveedores;
     private javax.swing.JTextField txtNit;

@@ -6,6 +6,8 @@
 package vista;
 
 import controlador.ProductoCtrl;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +23,7 @@ public class AgregarProductoForm extends javax.swing.JPanel {
     Long id=0L;
     public AgregarProductoForm() {
         initComponents();
+        //this.setSize(panelPedidos.getWidth(), panelPedidos.getHeight());
     }
 
     /**
@@ -41,12 +44,25 @@ public class AgregarProductoForm extends javax.swing.JPanel {
         btnRegistrar = new javax.swing.JButton();
         txtTipo = new javax.swing.JTextField();
 
+        panelPedidos.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 153, 51));
         jLabel1.setText("Registro Producto");
+        jLabel1.setToolTipText("");
 
         jLabel4.setText("Nombre");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
         jLabel5.setText("Tipo");
 
+        btnVolver.setBackground(new java.awt.Color(255, 153, 51));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-back-32.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,10 +70,18 @@ public class AgregarProductoForm extends javax.swing.JPanel {
             }
         });
 
+        btnRegistrar.setBackground(new java.awt.Color(255, 153, 51));
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-inventory-32.png"))); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        txtTipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoKeyTyped(evt);
             }
         });
 
@@ -66,45 +90,42 @@ public class AgregarProductoForm extends javax.swing.JPanel {
         panelPedidosLayout.setHorizontalGroup(
             panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPedidosLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(95, 95, 95)
+                .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPedidosLayout.createSequentialGroup()
-                        .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addGroup(panelPedidosLayout.createSequentialGroup()
-                                .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel4))
-                                .addGap(11, 11, 11)))
-                        .addGap(58, 58, 58)
-                        .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                            .addComponent(txtTipo)))
-                    .addGroup(panelPedidosLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
                         .addComponent(btnVolver)
-                        .addGap(139, 139, 139)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(226, Short.MAX_VALUE))
+                        .addGap(225, 225, 225)
+                        .addComponent(btnRegistrar))
+                    .addGroup(panelPedidosLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(295, 295, 295)
+                        .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(panelPedidosLayout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1)))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         panelPedidosLayout.setVerticalGroup(
             panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPedidosLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(97, 97, 97)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
-                .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(56, 56, 56)
+                .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(30, 30, 30)
+                .addGap(49, 49, 49)
                 .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver)
-                    .addComponent(btnRegistrar))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnVolver))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -115,17 +136,22 @@ public class AgregarProductoForm extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelPedidos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         ProductosView productos = new ProductosView();
-        productos.setSize(panelPedidos.getSize());
-        panelPedidos.removeAll();
-        panelPedidos.add(productos);
-        panelPedidos.revalidate();
-        panelPedidos.repaint();
+//        productos.setVisible(true);
+        this.setLayout(null);
+        productos.setSize(panelPedidos.getWidth(),panelPedidos.getHeight());
+        this.panelPedidos.removeAll();
+        this.panelPedidos.add(productos);
+//        panelPedidos.updateUI();
+        this.panelPedidos.revalidate();
+        this.panelPedidos.repaint();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -138,6 +164,38 @@ public class AgregarProductoForm extends javax.swing.JPanel {
         txtNombre.setText("");
         txtTipo.setText("");
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char car=evt.getKeyChar();
+      
+       if((car<'a' || car>'z') && (car<'A'||car>'Z') && (car!=(char)KeyEvent.VK_BACK_SPACE)&&(car!=(char)KeyEvent.VK_SPACE)){
+           evt.consume();
+           getToolkit().beep();
+           JOptionPane.showMessageDialog(this, "Solo se admite texto","Advertencia", JOptionPane.WARNING_MESSAGE);
+       }
+       
+            if(txtNombre.getText().length() >= 21)
+    {
+        evt.consume();
+        JOptionPane.showMessageDialog(this,"Solo 20 caracteres","Error de formato",JOptionPane.INFORMATION_MESSAGE);
+    }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtTipoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoKeyTyped
+        char car=evt.getKeyChar();
+      
+       if((car<'a' || car>'z') && (car<'A'||car>'Z') && (car!=(char)KeyEvent.VK_BACK_SPACE)&&(car!=(char)KeyEvent.VK_SPACE)){
+           evt.consume();
+           getToolkit().beep();
+           JOptionPane.showMessageDialog(this, "Solo se admite texto","Advertencia", JOptionPane.WARNING_MESSAGE);
+       }
+       
+            if(txtTipo.getText().length() >= 21)
+    {
+        evt.consume();
+        JOptionPane.showMessageDialog(this,"Solo 20 caracteres","Error de formato",JOptionPane.INFORMATION_MESSAGE);
+    }
+    }//GEN-LAST:event_txtTipoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

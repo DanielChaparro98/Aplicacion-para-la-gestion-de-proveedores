@@ -38,7 +38,6 @@ public final class Principal extends javax.swing.JPanel {
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         btnProductos = new javax.swing.JButton();
         btnPedidos = new javax.swing.JButton();
         btnProveedores = new javax.swing.JButton();
@@ -47,9 +46,6 @@ public final class Principal extends javax.swing.JPanel {
         btnSalir = new javax.swing.JButton();
 
         panelPrincipal.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("Pedidos");
 
         btnProductos.setBackground(new java.awt.Color(255, 153, 51));
         btnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/producto.png"))); // NOI18N
@@ -105,10 +101,6 @@ public final class Principal extends javax.swing.JPanel {
         panelPrincipal.setLayout(panelPrincipalLayout);
         panelPrincipalLayout.setHorizontalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPrincipalLayout.createSequentialGroup()
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelPrincipalLayout.createSequentialGroup()
@@ -129,9 +121,7 @@ public final class Principal extends javax.swing.JPanel {
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(32, 32, 32)
+                .addGap(69, 69, 69)
                 .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnProveedores)
                     .addComponent(btnPedidos)
@@ -177,11 +167,13 @@ public final class Principal extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProveedoresActionPerformed
-        proveedores.setSize(800, 500);
-        panelPrincipal.removeAll();
-        panelPrincipal.add(proveedores);
-        panelPrincipal.revalidate();
-        panelPrincipal.repaint();
+        //proveedores.setLocation(30, -220);
+        proveedores.setSize(panelPrincipal.getWidth(), panelPrincipal.getHeight());
+        this.setLayout(null);
+        this.panelPrincipal.removeAll();
+        this.panelPrincipal.add(proveedores);
+        this.panelPrincipal.revalidate();
+        this.panelPrincipal.repaint();
     }//GEN-LAST:event_btnProveedoresActionPerformed
 
     
@@ -195,7 +187,6 @@ public final class Principal extends javax.swing.JPanel {
     private javax.swing.JButton btnProductos;
     private javax.swing.JButton btnProveedores;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTable tblPedidos;

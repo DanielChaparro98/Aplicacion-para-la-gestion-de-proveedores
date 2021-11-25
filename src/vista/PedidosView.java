@@ -17,7 +17,7 @@ public class PedidosView extends javax.swing.JPanel {
     /** Creates new form PedidosView */
     
     PedidoCtrl pedidoCtrl= new PedidoCtrl();
-    Principal principal ;
+    
     public PedidosView() {
         initComponents();
         this.cargarDatosPedidos();
@@ -44,7 +44,7 @@ public class PedidosView extends javax.swing.JPanel {
 
         btnAgregar.setBackground(new java.awt.Color(255, 153, 51));
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-mobile-order-32.png"))); // NOI18N
-        btnAgregar.setText("Agregar Pedido");
+        btnAgregar.setText("Solicitar Pedido");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -69,6 +69,7 @@ public class PedidosView extends javax.swing.JPanel {
             }
         });
 
+        tblPedido.setBackground(new java.awt.Color(255, 153, 51));
         tblPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -113,7 +114,7 @@ public class PedidosView extends javax.swing.JPanel {
         pedidosLayout.setVerticalGroup(
             pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pedidosLayout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(pedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
                     .addComponent(btnEditar)
@@ -138,39 +139,43 @@ public class PedidosView extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-            principal=new Principal(); 
-            principal.setSize(600, 800);
-            pedidos.removeAll();
-            pedidos.add(principal);
-            pedidos.revalidate();
-            pedidos.repaint();
+            Principal principal=new Principal(); 
+            principal.setSize(pedidos.getWidth(), pedidos.getHeight());
+            this.setLayout(null);
+            this.pedidos.removeAll();
+            this.pedidos.add(principal);
+            this.pedidos.revalidate();
+            this.pedidos.repaint();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
             AgregarPedidoForm realizarPedido =new AgregarPedidoForm();    
-            realizarPedido.setSize(500, 500);
-            pedidos.removeAll();
-            pedidos.add(realizarPedido);
-            pedidos.revalidate();
-            pedidos.repaint();
+            realizarPedido.setSize(pedidos.getWidth(), pedidos.getHeight());
+            this.setLayout(null);
+            this.pedidos.removeAll();
+            this.pedidos.add(realizarPedido);
+            this.pedidos.revalidate();
+            this.pedidos.repaint();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
             AplazarPedidoForm aplazarPedido =new AplazarPedidoForm();    
-            aplazarPedido.setSize(500, 500);
-            pedidos.removeAll();
-            pedidos.add(aplazarPedido);
-            pedidos.revalidate();
-            pedidos.repaint();
+            aplazarPedido.setSize(pedidos.getWidth(), pedidos.getHeight());
+            this.setLayout(null);
+            this.pedidos.removeAll();
+            this.pedidos.add(aplazarPedido);
+            this.pedidos.revalidate();
+            this.pedidos.repaint();
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
             CancelarPedidoForm cancelarPedido =new CancelarPedidoForm();    
-            cancelarPedido.setSize(800, 900);
-            pedidos.removeAll();
-            pedidos.add(cancelarPedido);
-            pedidos.revalidate();
-            pedidos.repaint();
+            cancelarPedido.setSize(pedidos.getWidth(), pedidos.getHeight());
+            this.setLayout(null);
+            this.pedidos.removeAll();
+            this.pedidos.add(cancelarPedido);
+            this.pedidos.revalidate();
+            this.pedidos.repaint();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
 

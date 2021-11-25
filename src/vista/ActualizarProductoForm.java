@@ -6,7 +6,9 @@
 package vista;
 
 import controlador.ProductoCtrl;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -44,15 +46,26 @@ public class ActualizarProductoForm extends javax.swing.JPanel {
         btnVolver = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        panelProductos.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 153, 51));
         jLabel1.setText("Actualizar Producto");
 
         jLabel2.setText("Numero");
 
         jLabel3.setText("Nombre");
 
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Tipo");
 
+        btnVolver.setBackground(new java.awt.Color(255, 153, 51));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-back-32.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +73,8 @@ public class ActualizarProductoForm extends javax.swing.JPanel {
             }
         });
 
+        btnActualizar.setBackground(new java.awt.Color(255, 153, 51));
+        btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-edit-property-32.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,52 +87,51 @@ public class ActualizarProductoForm extends javax.swing.JPanel {
         panelProductosLayout.setHorizontalGroup(
             panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProductosLayout.createSequentialGroup()
+                .addGap(86, 86, 86)
                 .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelProductosLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addContainerGap(108, Short.MAX_VALUE))
                     .addGroup(panelProductosLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
                         .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
-                            .addComponent(btnVolver))
-                        .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelProductosLayout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cbNumero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtNombre)
-                                    .addComponent(cbTipo, 0, 107, Short.MAX_VALUE)))
+                                .addComponent(btnVolver)
+                                .addGap(255, 255, 255)
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelProductosLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnActualizar)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                                .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(309, 309, 309)
+                                .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelProductosLayout.setVerticalGroup(
             panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProductosLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(56, 56, 56)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(cbNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cbNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(21, 21, 21)
                 .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(46, 46, 46)
                 .addGroup(panelProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver)
-                    .addComponent(btnActualizar))
-                .addContainerGap(153, Short.MAX_VALUE))
+                    .addComponent(btnActualizar)
+                    .addComponent(btnVolver))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -128,25 +142,39 @@ public class ActualizarProductoForm extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        ProductosView productos = new ProductosView();
-        productos.setSize(panelProductos.getSize());
-        panelProductos.removeAll();
-        panelProductos.add(productos);
-        panelProductos.revalidate();
-        panelProductos.repaint();
-    }//GEN-LAST:event_btnVolverActionPerformed
-
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         producto.updateProducto(Long.parseLong(cbNumero.getSelectedItem().toString()),txtNombre.getText() , cbTipo.getSelectedItem().toString());
-        txtNombre.setText("");     
+        txtNombre.setText("");
     }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        ProductosView productos = new ProductosView();
+        productos.setSize(panelProductos.getWidth(),panelProductos.getHeight());
+        this.setLayout(null);
+        this.panelProductos.removeAll();
+        this.panelProductos.add(productos);
+        this.panelProductos.revalidate();
+        this.panelProductos.repaint();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char car=evt.getKeyChar();
+      
+       if((car<'a' || car>'z') && (car<'A'||car>'Z') && (car!=(char)KeyEvent.VK_BACK_SPACE)&&(car!=(char)KeyEvent.VK_SPACE)){
+           evt.consume();
+           getToolkit().beep();
+           JOptionPane.showMessageDialog(this, "Solo se admite texto","Advertencia", JOptionPane.WARNING_MESSAGE);
+       }
+            if(txtNombre.getText().length() >= 21)
+    {
+        evt.consume();
+        JOptionPane.showMessageDialog(this,"Solo 20 caracteres","Error de formato",JOptionPane.INFORMATION_MESSAGE);
+    }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
     
     public DefaultComboBoxModel getModelo(){

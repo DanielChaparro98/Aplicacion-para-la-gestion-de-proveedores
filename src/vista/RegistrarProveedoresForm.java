@@ -7,7 +7,9 @@ package vista;
 
 import controlador.ProductoCtrl;
 import controlador.ProveedorCtrl;
+import java.awt.event.KeyEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import modelo.Producto;
 
 /**
@@ -19,10 +21,10 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
     /**
      * Creates new form RegistrarProveedoresForm
      */
-    
-    ProveedorCtrl proveedor= new ProveedorCtrl();
-    ProductoCtrl producto= new ProductoCtrl();
-    Long id=0L;
+    ProveedorCtrl proveedor = new ProveedorCtrl();
+    ProductoCtrl producto = new ProductoCtrl();
+    Long id = 0L;
+
     public RegistrarProveedoresForm() {
         initComponents();
         this.cbProducto.setModel(getModelo());
@@ -53,11 +55,27 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
 
         jLabel2.setText("jLabel2");
 
+        panelProveedores.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 153, 51));
         jLabel1.setText("Registro Proveedor");
 
         jLabel3.setText("NIT");
 
+        txtNit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNitKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Nombre");
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         jLabel5.setText("Telefono");
 
@@ -66,9 +84,16 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
                 txtTelefonoActionPerformed(evt);
             }
         });
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("Producto");
 
+        btnVolver.setBackground(new java.awt.Color(255, 153, 51));
+        btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-back-32.png"))); // NOI18N
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +101,8 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
             }
         });
 
+        btnRegistrar.setBackground(new java.awt.Color(255, 153, 51));
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icons8-edit-property-32.png"))); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,59 +114,58 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
         panelProveedores.setLayout(panelProveedoresLayout);
         panelProveedoresLayout.setHorizontalGroup(
             panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelProveedoresLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panelProveedoresLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProveedoresLayout.createSequentialGroup()
+                .addGap(113, 113, 113)
+                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProveedoresLayout.createSequentialGroup()
                         .addComponent(btnVolver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegistrar)
-                        .addGap(11, 11, 11))
-                    .addGroup(panelProveedoresLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelProveedoresLayout.createSequentialGroup()
-                                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addGap(27, 27, 27)
-                                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtNombre)
-                                        .addComponent(txtTelefono)
-                                        .addComponent(cbProducto, 0, 129, Short.MAX_VALUE))))
-                            .addComponent(jLabel1))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addComponent(btnRegistrar))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProveedoresLayout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProveedoresLayout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProveedoresLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelProveedoresLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(56, 56, Short.MAX_VALUE))
         );
         panelProveedoresLayout.setVerticalGroup(
             panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProveedoresLayout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cbProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(panelProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver)
-                    .addComponent(btnRegistrar))
-                .addContainerGap())
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnVolver))
+                .addGap(61, 61, 61))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -159,25 +185,67 @@ public class RegistrarProveedoresForm extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTelefonoActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        ProveedoresView proveedor= new ProveedoresView();
-        proveedor.setSize(panelProveedores.getSize());
-        panelProveedores.removeAll();
-        panelProveedores.add(proveedor);
-        panelProveedores.revalidate();
-        panelProveedores.repaint();
+        ProveedoresView proveedor = new ProveedoresView();
+        proveedor.setSize(panelProveedores.getWidth(), panelProveedores.getHeight());
+        this.setLayout(null);
+        this.panelProveedores.removeAll();
+        this.panelProveedores.add(proveedor);
+        this.panelProveedores.revalidate();
+        this.panelProveedores.repaint();
     }//GEN-LAST:event_btnVolverActionPerformed
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-      
-       proveedor.saveProveedor(txtNit.getText(), txtNombre.getText(), txtTelefono.getText(), producto.selectProducto(Long.parseLong(cbProducto.getSelectedItem().toString())));
-       txtNombre.setText("");
-       txtNit.setText("");
-       txtTelefono.setText("");           
+
+        proveedor.saveProveedor(txtNit.getText(), txtNombre.getText(), txtTelefono.getText(), producto.selectProductoNombre(cbProducto.getSelectedItem().toString()));
+        txtNombre.setText("");
+        txtNit.setText("");
+        txtTelefono.setText("");
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void txtNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNitKeyTyped
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9') && (c != (char) KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Solo se digitan numeros", "Error de formato", JOptionPane.INFORMATION_MESSAGE);
+        }
+        if (txtNit.getText().length() >= 10) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo 9 numeros", "Error de formato", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNitKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char car = evt.getKeyChar();
+
+        if ((car < 'a' || car > 'z') && (car < 'A' || car > 'Z') && (car != (char) KeyEvent.VK_BACK_SPACE) && (car != (char) KeyEvent.VK_SPACE)) {
+            evt.consume();
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Solo se admite texto", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+        if (txtNombre.getText().length() >= 21) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo 20 caracteres", "Error de formato", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        char c = evt.getKeyChar();
+        if ((c < '0' || c > '9') && (c != (char) KeyEvent.VK_BACK_SPACE)) {
+            evt.consume();
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(this, "Solo se digitan numeros", "Error de formato", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        if (txtTelefono.getText().length() >= 10) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo 10 numeros", "Error de formato", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
 
     public DefaultComboBoxModel getModelo() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         for (int i = 0; i < producto.selectProducto().size(); i++) {
-            modelo.addElement(producto.selectProducto().get(i).getId());
+            modelo.addElement(producto.selectProducto().get(i).getNombre());
         }
         return modelo;
     }
